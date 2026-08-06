@@ -1,3 +1,14 @@
+emailjs.init({
+    publicKey: "lbo2ZD2JGn-NDe8Ai",
+});
+
+const SUPABASE_URL = "https://albxdmnscsekjoirjoee.supabase.co";
+const SUPABASE_KEY = "sb_publishable_gK_FzHhpv79eSJp8NhZ-7A_zMWJ2Wh1";
+
+const supabase = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
 const jobForm = document.getElementById("jobForm");
 
 jobForm.addEventListener("submit", async function (e) {
