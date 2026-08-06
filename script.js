@@ -1,76 +1,89 @@
+
+       
+            
+  // ===============================
+// EmailJS
+// ===============================
+
 emailjs.init({
-    publicKey: "lbo2ZD2JGn-NDe8Ai",
+    publicKey: "lbo2ZD2JGn-NDe8Ai"
 });
 
-const SUPABASE_URL = "https://albxdmnscsekjoirjoee.supabase.co";
-const SUPABASE_KEY = "sb_publishable_gK_FzHhpv79eSJp8NhZ-7A_zMWJ2Wh1";
+// ===============================
+// Supabase
+// ===============================
 
-const supabase = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
+const supabaseUrl = "https://albxdmnscsekjoirjoee.supabase.co";
+const supabaseKey = "sb_publishable_gK_FzHhpv79eSJp8NhZ-7A_zMWJ2Wh1";
+
+const db = window.supabase.createClient(
+    supabaseUrl,
+    supabaseKey
 );
+
+// ===============================
+// Form
+// ===============================
+
 const jobForm = document.getElementById("jobForm");
 
-jobForm.addEventListener("submit", async function (e) {
-    e.preventDefault();
+if (jobForm) {
 
-    const data = {
-        name: jobForm.querySelector('input[name="name"]').value,
-        phone: jobForm.querySelector('input[name="phone"]').value,
-        email: jobForm.querySelector('input[name="email"]').value,
-        postcode: jobForm.querySelector('input[name="postcode"]').value,
-        trade: document.getElementById("tradeSelect").value,
-        title: jobForm.querySelector('input[placeholder]').value,
-        description: jobForm.querySelector("textarea").value
-    };
+jobForm.addEventListener("submit", async function(e){
 
-    // Send Email
-    try {
-        await emailjs.send(
-            "service_yckjkna",
-            "template_xtpon58",
-            {
-                name: data.name,
-                phone: data.phone,
-                email: data.email,
-                trade: data.trade,
-                location: data.postcode,
-                message: data.description
-            }
-        );
+e.preventDefault();
 
-        // Save to Supabase
-        await fetch(
-            "https://albxdmnscsekjoirjoee.supabase.co/rest/v1/Jobs",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "apikey": "sb_publishable_gK_FzHhpv79eSJp8NhZ-7A_zMWJ2Wh1",
-                    "Authorization": "Bearer sb_publishable_gK_FzHhpv79eSJp8NhZ-7A_zMWJ2Wh1",
-                    "Prefer": "return=minimal"
-                },
-                body: JSON.stringify(data)
-            }
-        );
+const data = {
 
-        document.getElementById("jobMessage").innerHTML =
-            "✅ Thank you! Your job request has been sent successfully.";
+name: jobForm.querySelector('input[name="name"]').value,
+phone: jobForm.querySelector('input[name="phone"]').value,
+email: jobForm.querySelector('input[name="email"]').value,
+postcode: jobForm.querySelector('input[name="postcode"]').value,
+trade: document.getElementById("tradeSelect").value,
+title: jobForm.querySelector('input[placeholder]').value,
+description: jobForm.querySelector("textarea").value
 
-        document.getElementById("jobMessage").className =
-            "form-message success";
+};
 
-        jobForm.reset();
+try{
 
-    } catch (err) {
-        console.log(err);
+// Email
 
-        document.getElementById("jobMessage").innerHTML =
-            "❌ Something went wrong.";
+await emailjs.send(
+"service_yckjkna",
+"template_xtpon58",
+{
+name:data.name,
+phone:data.phone,
+email:data.email,
+trade:data.trade,
+location:data.postcode,
+message:data.description
+}
+);
 
-        document.getElementById("jobMessage").className =
-            "form-message error";
-    }
+// Database
+
+const { error } = await db
+.from("Jobs")
+.insert([data]);
+
+if(error) throw error;
+
+document.getElementById("jobMessage").innerHTML =
+"✅ Thank you! Your job request has been sent successfully.";
+
+jobForm.reset();
+
+}catch(err){
+
+console.error(err);
+
+document.getElementById("jobMessage").innerHTML =
+"❌ Sorry, something went wrong.";
+
+}
+
 });
 
-document.getElementById("year").textContent = new Date().getFullYear();
+}
