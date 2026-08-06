@@ -1,45 +1,65 @@
-emailjs.init({
-    publicKey: "lbo2ZD2JGn-NDe8Ai",
-});
-
-document.querySelector('.menu-toggle')?.addEventListener('click', () => {
-    document.querySelector('.nav-links').classList.toggle('open');
-});
-
-document.querySelectorAll('[data-trade]').forEach(btn =>
-    btn.addEventListener('click', () => {
-        document.getElementById('tradeSelect').value = btn.dataset.trade;
-        document.getElementById('post-job').scrollIntoView({
-            behavior: 'smooth'
-        });
-    })
-);
-
 const jobForm = document.getElementById("jobForm");
 
-jobForm.addEventListener("submit", function (e) {
+jobForm.addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    emailjs.send("service_yckjkna", "template_xtpon58", {
+    const data = {
         name: jobForm.querySelector('input[name="name"]').value,
         phone: jobForm.querySelector('input[name="phone"]').value,
         email: jobForm.querySelector('input[name="email"]').value,
+        postcode: jobForm.querySelector('input[name="postcode"]').value,
         trade: document.getElementById("tradeSelect").value,
-        location: jobForm.querySelector('input[name="postcode"]').value,
-        message: jobForm.querySelector("textarea").value
-    })
-    .then(() => {
+        title: jobForm.querySelector('input[placeholder]').value,
+        description: jobForm.querySelector("textarea").value
+    };
+
+    // Send Email
+    try {
+        await emailjs.send(
+            "service_yckjkna",
+            "template_xtpon58",
+            {
+                name: data.name,
+                phone: data.phone,
+                email: data.email,
+                trade: data.trade,
+                location: data.postcode,
+                message: data.description
+            }
+        );
+
+        // Save to Supabase
+        await fetch(
+            "https://albxdmnscsekjoirjoee.supabase.co/rest/v1/Jobs",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "apikey": "sb_publishable_gK_FzHhpv79eSJp8NhZ-7A_zMWJ2Wh1",
+                    "Authorization": "Bearer sb_publishable_gK_FzHhpv79eSJp8NhZ-7A_zMWJ2Wh1",
+                    "Prefer": "return=minimal"
+                },
+                body: JSON.stringify(data)
+            }
+        );
+
         document.getElementById("jobMessage").innerHTML =
             "✅ Thank you! Your job request has been sent successfully.";
-        document.getElementById("jobMessage").className = "form-message success";
+
+        document.getElementById("jobMessage").className =
+            "form-message success";
+
         jobForm.reset();
-    })
-    .catch((error) => {
-        console.log(error);
+
+    } catch (err) {
+        console.log(err);
+
         document.getElementById("jobMessage").innerHTML =
-            "❌ Sorry, something went wrong. Please try again.";
-        document.getElementById("jobMessage").className = "form-message error";
-    });
+            "❌ Something went wrong.";
+
+        document.getElementById("jobMessage").className =
+            "form-message error";
+    }
 });
 
 document.getElementById("year").textContent = new Date().getFullYear();
