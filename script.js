@@ -87,3 +87,18 @@ document.getElementById("jobMessage").innerHTML =
 });
 
 }
+// Mapbox map
+mapboxgl.accessToken = 'pk.eyJ1Ijoid2lycmFsdHJhZGVzIiwiYSI6ImNtc2h6bXdxNDA2NGkyd3M5b2U4bXczbG8ifQ.Gq03fiSUQJ4AwVzsJFvMOw';
+
+const map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/satellite-streets-v12',
+    center: [-3.065, 53.372],
+    zoom: 10
+});
+
+map.addControl(new mapboxgl.NavigationControl());
+
+new mapboxgl.Marker()
+    .setLngLat([-3.065, 53.372])
+    .addTo(map);
