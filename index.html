@@ -1,45 +1,76 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Wirral Trades</title>
+  <meta charset="UTF-8">
+  <title>Wirral Trades</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      text-align: center;
+    }
 
-<style>
-body { font-family: Inter, sans-serif; margin:0; }
-.container { max-width:1100px; margin:auto; padding:20px; }
-.button { background:#0a66c2; color:#fff; padding:12px 18px; text-decoration:none; border-radius:6px; display:inline-block; }
-#map { height:400px; border-radius:12px; margin-top:20px; }
-</style>
+    header {
+      background: #0f172a;
+      color: white;
+      padding: 30px 20px;
+    }
 
-<link href="https://api.mapbox.com/mapbox-gl-js/v3.5.0/mapbox-gl.css" rel="stylesheet">
+    h1 {
+      margin: 0;
+      font-size: 32px;
+    }
+
+    p {
+      margin-top: 10px;
+      font-size: 18px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 20px;
+      background: #2563eb;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+
+    .map {
+      margin-top: 30px;
+    }
+
+    iframe {
+      width: 90%;
+      max-width: 800px;
+      height: 400px;
+      border: 0;
+      border-radius: 10px;
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="container">
-  <h1>Wirral Trades</h1>
-  <p>Find local trades fast.</p>
+  <header>
+    <h1>Wirral Trades</h1>
+    <p>Find trusted local tradespeople fast</p>
 
-  <a class="button" href="register.html">Join as a trade</a>
+    <a href="#" class="btn">Join as a Trade</a>
+  </header>
 
-  <div id="map"></div>
-</div>
+  <div class="map">
+    <h2>Our Area</h2>
 
-<script src="https://api.mapbox.com/mapbox-gl-js/v3.5.0/mapbox-gl.js"></script>
+    <iframe 
+      src="https://www.google.com/maps?q=Wirral&output=embed">
+    </iframe>
 
-<script>
-mapboxgl.accessToken = "YOUR_MAPBOX_TOKEN_HERE"; // IMPORTANT
-
-const map = new mapboxgl.Map({
-  container: "map",
-  style: "mapbox://styles/mapbox/streets-v11",
-  center: [-3.05, 53.4], // Wirral
-  zoom: 10
-});
-</script>
+  </div>
 
 </body>
 </html>
