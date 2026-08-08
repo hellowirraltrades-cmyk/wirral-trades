@@ -2,60 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Wirral Trades - Register</title>
+  <title>Wirral Trades</title>
 </head>
+
 <body>
 
-<h1>Register your trade</h1>
+<h1>Wirral Trades</h1>
+<p>Find trusted local tradespeople near you.</p>
 
-<form id="signup-form">
-  <input type="text" id="trade" placeholder="Main trade" required><br><br>
+<h2>Post a Job</h2>
+<a href="/post-job.html">Click here to post a job</a>
 
-  <input type="text" id="postcode" placeholder="Base postcode" required><br><br>
-
-  <input type="text" id="area" placeholder="Areas covered" required><br><br>
-
-  <input type="text" id="website" placeholder="Website or Facebook"><br><br>
-
-  <button type="submit">Register my trade</button>
-</form>
-
-<p id="message"></p>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-
-<script>
-const supabase = window.supabase.createClient(
-  "https://albxdmnscsekjoirjoee.supabase.co",
-  "sb_publishable_gK_FzHhpv79eSJp8NhZ-7A_zMWJ2Wh1"
-);
-
-document.getElementById("signup-form").addEventListener("submit", async function(e) {
-  e.preventDefault();
-
-  const trade = document.getElementById("trade").value;
-  const postcode = document.getElementById("postcode").value;
-  const area = document.getElementById("area").value;
-  const website = document.getElementById("website").value;
-
-  const { error } = await supabase
-    .from("tradespeople")
-    .insert([{
-      trades: [trade],
-      postcode: postcode,
-      area: area,
-      website: website
-    }]);
-
-  if (error) {
-    document.getElementById("message").innerText = "❌ Error saving";
-    console.log(error);
-  } else {
-    document.getElementById("message").innerText = "✅ Registered!";
-    document.getElementById("signup-form").reset();
-  }
-});
-</script>
+<h2>Join as a Tradesman</h2>
+<a href="/signup.html">Register your trade</a>
 
 </body>
 </html>
