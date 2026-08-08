@@ -3,74 +3,129 @@
 <head>
   <meta charset="UTF-8">
   <title>Wirral Trades</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Leaflet map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 
   <style>
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
+      font-family: Arial;
       text-align: center;
-    }
-
-    header {
-      background: #0f172a;
-      color: white;
-      padding: 30px 20px;
-    }
-
-    h1 {
       margin: 0;
-      font-size: 32px;
     }
 
-    p {
-      margin-top: 10px;
-      font-size: 18px;
-    }
-
-    .btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 20px;
-      background: #2563eb;
-      color: white;
-      text-decoration: none;
-      border-radius: 6px;
-      font-weight: bold;
-    }
-
-    .map {
-      margin-top: 30px;
-    }
-
-    iframe {
-      width: 90%;
-      max-width: 800px;
+    #map {
       height: 400px;
-      border: 0;
-      border-radius: 10px;
+      margin-top: 20px;
+    }
+
+    form {
+      margin-top: 20px;
+    }
+
+    input {
+      padding: 8px;
+      width: 250px;
+      margin: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      cursor: pointer;
     }
   </style>
 </head>
 
 <body>
 
-  <header>
-    <h1>Wirral Trades</h1>
-    <p>Find trusted local tradespeople fast</p>
+<h1>Wirral Trades</h1>
 
-    <a href="#" class="btn">Join as a Trade</a>
-  </header>
+<!-- FORM -->
+<form id="signup-form">
+  <input type="text" id="trade" placeholder="Trade (plumber, builder)" required><br>
+  <input type="text" id="postcode" placeholder="Postcode" required><br>
+  <input type="text" id="area" placeholder="Areas covered"><br>
+  <input type="text" id="website" placeholder="Website / Facebook"><br>
+  <button type="submit">Register</button>
+</form>
 
-  <div class="map">
-    <h2>Our Area</h2>
+<p id="message"></p>
 
-    <iframe 
-      src="https://www.google.com/maps?q=Wirral&output=embed">
-    </iframe>
+<!-- MAP -->
+<div id="map"></div>
 
-  </div>
+<script>
+const supabase = window.supabase.createClient(
+  "https://albxdmnscsekjoirjoee.supabase.co",
+  "sb_publishable_gK_FzHhpv79eSJp8NhZ-7A_zMWJ2Wh1"
+);
+
+// MAP SETUP
+const map = L.map('map').setView([53.3727, -3.0738], 11);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 18,
+}).addTo(map);
+
+// LOAD EXISTING TRADES
+async function loadTrades() {
+  const { data, error } = await supabase
+    .from("tradespeople")
+    .select("*");
+
+  if (data) {
+    data.forEach(trade => {
+      if (trade.postcode) {
+        // fake coords for now (you can upgrade later)
+        const lat = 53.37 + Math.random() * 0.05;
+        const lng = -3.07 + Math.random() * 0.05;
+
+        L.marker([lat, lng])
+          .addTo(map)
+          .bindPopup(`
+            <b>${trade.trades}</b><br>
+            ${trade.area || ""}<br>
+            <a href="${trade.website}" target="_blank">${trade.website}</a>
+          `);
+      }
+    });
+  }
+}
+
+loadTrades();
+
+// FORM SUBMIT
+document.getElementById("signup-form").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const trade = document.getElementById("trade").value;
+  const postcode = document.getElementById("postcode").value;
+  const area = document.getElementById("area").value;
+  const website = document.getElementById("website").value;
+
+  const { error } = await supabase
+    .from("tradespeople")
+    .insert([{
+      trades: trade,
+      postcode: postcode,
+      area: area,
+      website: website
+    }]);
+
+  if (error) {
+    document.getElementById("message").innerText = "❌ Error saving";
+    console.log(error);
+  } else {
+    document.getElementById("message").innerText = "✅ Registered!";
+    document.getElementById("signup-form").reset();
+    loadTrades();
+  }
+});
+</script>
 
 </body>
 </html>
