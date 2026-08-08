@@ -15,6 +15,8 @@
 
   <input type="text" id="trade" placeholder="Trade (e.g. plumber)" required><br><br>
 
+  <input type="text" id="area" placeholder="Area (e.g. Wirral)" required><br><br>
+
   <button type="submit">Sign Up</button>
 </form>
 
@@ -23,36 +25,37 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 
 <script>
-const supabase = window.supabase.createClient(
-  "https://albxdmnscsekjoirjoee.supabase.co",
-  "sb_publishable_gK_FzHhpv79eSJp8NhZ-7A_zMWJ2Wh1"
-);
+  const supabase = window.supabase.createClient(
+    "https://albxdmnscsekjoirjoee.supabase.co",
+    "sb_publishable_gK_FzHhpv79eSJp8NhZ-7A_zMWJ2Wh1"
+  );
 
-document.getElementById("signup-form").addEventListener("submit", async (e) => {
-  e.preventDefault();
+  document.getElementById("signup-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  const business_name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
-  const trade = document.getElementById("trade").value;
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const trade = document.getElementById("trade").value;
+    const area = document.getElementById("area").value;
 
-  const { error } = await supabase
-    .from("tradespeople")
-    .insert([
-      {
-        business_name: business_name,
-        email: email,
-        phone: "Not set",
-        trades: [trade]
-      }
-    ]);
+    const { error } = await supabase
+      .from("tradespeople")
+      .insert([{ 
+        business_name: name, 
+        email: email, 
+        trades: [trade], 
+        area: area 
+      }]);
 
-  if (error) {
-    console.error(error);
-    document.getElementById("message").innerText = "Error signing up";
-  } else {
-    document.getElementById("message").innerText = "Signed up successfully!";
-  }
-});
+    if (error) {
+      document.getElementById("message").innerText = "Error signing up";
+    } else {
+      document.getElementById("message").innerText = "Signed up successfully!";
+      
+      // ✅ clears the form
+      document.getElementById("signup-form").reset();
+    }
+  });
 </script>
 
 </body>
