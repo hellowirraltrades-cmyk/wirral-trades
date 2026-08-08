@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Post a Job</title>
+</head>
+<body>
+
+  <h1>Post a Job</h1>
+
+  <form id="jobForm">
+    <input type="text" id="title" placeholder="Job title" required><br><br>
+
+    <textarea id="description" placeholder="Job description" required></textarea><br><br>
+
+    <input type="text" id="trade" placeholder="Trade (e.g. plumber)" required><br><br>
+
+    <input type="text" id="area" placeholder="Area (e.g. Wirral)" required><br><br>
+
+    <button type="submit">Post Job</button>
+  </form>
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    const supabase = window.supabase.createClient(
+      "https://albxdmnscsekjoirjoee.supabase.co",
+      "sb_publishable_gK_FzHhpv79eSJp8NhZ-7A_zMWJ2Wh1"
+    );
+
+    document.getElementById("jobForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const title = document.getElementById("title").value;
+      const description = document.getElementById("description").value;
+      const trade = document.getElementById("trade").value;
+      const area = document.getElementById("area").value;
+
+      const { error } = await supabase
+        .from("jobs")
+        .insert([
+          { title, description, trade, area }
+        ]);
+
+      if (error) {
+        console.error(error);
+        alert("Error: " + error.message);
+      } else {
+        alert("Job posted!");
+      }
+    });
+  </script>
+
+</body>
+</html>
