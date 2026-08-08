@@ -3,23 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <title>Tradesman Sign Up</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 </head>
+
 <body>
 
-<h1>Tradesman Sign Up</h1>
+<h1>Register your trade</h1>
 
 <form id="signup-form">
-  <input type="text" id="name" placeholder="Business Name" required><br><br>
-  <input type="email" id="email" placeholder="Email" required><br><br>
-  <input type="text" id="trade" placeholder="Trade" required><br><br>
-  <input type="text" id="area" placeholder="Area" required><br><br>
 
-  <button type="submit">Sign Up</button>
+  <input type="text" id="name" placeholder="Business Name" required><br><br>
+
+  <input type="email" id="email" placeholder="Email" required><br><br>
+
+  <input type="text" id="phone" placeholder="Phone" required><br><br>
+
+  <input type="text" id="trade" placeholder="Main trade" required><br><br>
+
+  <input type="text" id="area" placeholder="Area (Wirral etc)" required><br><br>
+
+  <button type="submit">Register my trade</button>
+
 </form>
 
 <p id="message"></p>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 
 <script>
   const supabase = window.supabase.createClient(
@@ -28,27 +36,31 @@
   );
 
   document.getElementById("signup-form").addEventListener("submit", async function(e) {
-    e.preventDefault(); // 🚨 THIS STOPS PAGE JUMP
+    e.preventDefault();
 
     const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
     const trade = document.getElementById("trade").value;
     const area = document.getElementById("area").value;
 
     const { error } = await supabase
       .from("tradespeople")
-      .insert([{
-        business_name: name,
-        email: email,
-        trades: [trade],
-        area: area
-      }]);
+      .insert([
+        {
+          business_name: name,
+          email: email,
+          phone: phone,
+          trades: [trade],
+          area: area
+        }
+      ]);
 
     if (error) {
-      document.getElementById("message").innerText = "❌ Error";
+      document.getElementById("message").innerText = "❌ Error saving";
       console.log(error);
     } else {
-      document.getElementById("message").innerText = "✅ Success";
+      document.getElementById("message").innerText = "✅ Registered!";
       document.getElementById("signup-form").reset();
     }
   });
