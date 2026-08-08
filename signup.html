@@ -9,13 +9,11 @@
 <h1>Tradesman Sign Up</h1>
 
 <form id="signup-form">
-  <input type="text" id="name" placeholder="Full Name" required><br><br>
+  <input type="text" id="name" placeholder="Business Name" required><br><br>
 
   <input type="email" id="email" placeholder="Email" required><br><br>
 
   <input type="text" id="trade" placeholder="Trade (e.g. plumber)" required><br><br>
-
-  <input type="text" id="area" placeholder="Area (e.g. Wirral)" required><br><br>
 
   <button type="submit">Sign Up</button>
 </form>
@@ -33,16 +31,23 @@ const supabase = window.supabase.createClient(
 document.getElementById("signup-form").addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const name = document.getElementById("name").value;
+  const business_name = document.getElementById("name").value;
   const email = document.getElementById("email").value;
   const trade = document.getElementById("trade").value;
-  const area = document.getElementById("area").value;
 
   const { error } = await supabase
-    .from("tradesmen")
-    .insert([{ name, email, trade, area }]);
+    .from("tradespeople")
+    .insert([
+      {
+        business_name: business_name,
+        email: email,
+        phone: "Not set",
+        trades: [trade]
+      }
+    ]);
 
   if (error) {
+    console.error(error);
     document.getElementById("message").innerText = "Error signing up";
   } else {
     document.getElementById("message").innerText = "Signed up successfully!";
