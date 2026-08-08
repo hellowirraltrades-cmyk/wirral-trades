@@ -8,7 +8,7 @@
 
 <h1>Tradesman Sign Up</h1>
 
-<form id="signup-form">
+<form id="signup-form" onsubmit="return false;">
   <input type="text" id="name" placeholder="Business Name" required><br><br>
 
   <input type="email" id="email" placeholder="Email" required><br><br>
@@ -17,7 +17,7 @@
 
   <input type="text" id="area" placeholder="Area (e.g. Wirral)" required><br><br>
 
-  <button type="submit">Sign Up</button>
+  <button type="button" id="submitBtn">Sign Up</button>
 </form>
 
 <p id="message"></p>
@@ -30,8 +30,7 @@
     "sb_publishable_gK_FzHhpv79eSJp8NhZ-7A_zMWJ2Wh1"
   );
 
-  document.getElementById("signup-form").addEventListener("submit", async (e) => {
-    e.preventDefault();
+  document.getElementById("submitBtn").addEventListener("click", async () => {
 
     const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
@@ -40,21 +39,21 @@
 
     const { error } = await supabase
       .from("tradespeople")
-      .insert([{ 
-        business_name: name, 
-        email: email, 
-        trades: [trade], 
-        area: area 
+      .insert([{
+        business_name: name,
+        email: email,
+        trades: [trade],
+        area: area
       }]);
 
     if (error) {
-      document.getElementById("message").innerText = "Error signing up";
+      document.getElementById("message").innerText = "❌ Error signing up";
+      console.log(error);
     } else {
-      document.getElementById("message").innerText = "Signed up successfully!";
-      
-      // ✅ clears the form
+      document.getElementById("message").innerText = "✅ Signed up successfully!";
       document.getElementById("signup-form").reset();
     }
+
   });
 </script>
 
