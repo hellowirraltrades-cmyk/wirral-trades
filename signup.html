@@ -8,16 +8,13 @@
 
 <h1>Tradesman Sign Up</h1>
 
-<form id="signup-form" onsubmit="return false;">
+<form id="signup-form">
   <input type="text" id="name" placeholder="Business Name" required><br><br>
-
   <input type="email" id="email" placeholder="Email" required><br><br>
+  <input type="text" id="trade" placeholder="Trade" required><br><br>
+  <input type="text" id="area" placeholder="Area" required><br><br>
 
-  <input type="text" id="trade" placeholder="Trade (e.g. plumber)" required><br><br>
-
-  <input type="text" id="area" placeholder="Area (e.g. Wirral)" required><br><br>
-
-  <button type="button" id="submitBtn">Sign Up</button>
+  <button type="submit">Sign Up</button>
 </form>
 
 <p id="message"></p>
@@ -30,7 +27,8 @@
     "sb_publishable_gK_FzHhpv79eSJp8NhZ-7A_zMWJ2Wh1"
   );
 
-  document.getElementById("submitBtn").addEventListener("click", async () => {
+  document.getElementById("signup-form").addEventListener("submit", async function(e) {
+    e.preventDefault(); // 🚨 THIS STOPS PAGE JUMP
 
     const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
@@ -47,13 +45,12 @@
       }]);
 
     if (error) {
-      document.getElementById("message").innerText = "❌ Error signing up";
+      document.getElementById("message").innerText = "❌ Error";
       console.log(error);
     } else {
-      document.getElementById("message").innerText = "✅ Signed up successfully!";
+      document.getElementById("message").innerText = "✅ Success";
       document.getElementById("signup-form").reset();
     }
-
   });
 </script>
 
