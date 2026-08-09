@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,44 +28,10 @@ header {
     color: white;
     text-align: center;
     padding: 80px 20px;
-    <section id="post-job" style="padding:40px; background:white;">
-<h2 style="text-align:center;">Post a Job</h2>
-
-<form action="https://formspree.io/f/YOUR-ID" method="POST" style="max-width:600px;margin:auto;display:flex;flex-direction:column;gap:10px;">
-
-<input name="name" placeholder="Your Name" required>
-<input name="phone" placeholder="Phone" required>
-<input name="email" type="email" placeholder="Email" required>
-<input name="postcode" placeholder="Postcode" required>
-
-<select name="trade" required>
-<option value="">Select Trade</option>
-<option>Joiner</option>
-<option>Plumber</option>
-<option>Electrician</option>
-<option>Decorator</option>
-<option>Roofer</option>
-<option>Landscaper</option>
-</select>
-
-<input name="title" placeholder="Job Title" required>
-
-<textarea name="description" placeholder="Describe the job..." rows="5" required></textarea>
-
-<button class="btn btn-primary">Submit Job</button>
-
-</form>
-</section>
 }
 
 .hero h1 {
     font-size: 40px;
-    margin-bottom: 10px;
-}
-
-.hero p {
-    font-size: 18px;
-    margin-bottom: 20px;
 }
 
 .btn {
@@ -118,6 +83,27 @@ header {
     padding: 10px;
 }
 
+/* FORM SECTIONS */
+.form-section {
+    padding: 40px;
+    background: white;
+    margin: 20px;
+    border-radius: 8px;
+}
+
+form {
+    max-width: 600px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input, select, textarea {
+    padding: 10px;
+    font-size: 16px;
+}
+
 /* MAP */
 .map {
     padding: 30px;
@@ -150,15 +136,14 @@ Wirral Trades
 <h1>Find Trusted Local Tradespeople</h1>
 <p>No middlemen. Just real local work.</p>
 
-<button class="btn btn-primary">Post a Job</button>
-<button class="btn btn-secondary">Join as a Trade</button>
+<a href="#post-job"><button class="btn btn-primary">Post a Job</button></a>
+<a href="#join"><button class="btn btn-secondary">Join as a Trade</button></a>
 </section>
 
 <section class="services">
 <h2>Popular Services</h2>
 
 <div class="cards">
-
 <div class="card">
 <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952">
 <h3>Carpentry</h3>
@@ -178,17 +163,72 @@ Wirral Trades
 <img src="https://images.unsplash.com/photo-1597007030739-6d2e1b3b8c7d">
 <h3>Painting</h3>
 </div>
-
 </div>
+</section>
+
+<!-- POST A JOB -->
+<section id="post-job" class="form-section">
+<h2 style="text-align:center;">Post a Job</h2>
+
+<form action="https://formspree.io/f/YOUR-ID" method="POST">
+
+<input name="name" placeholder="Your Name" required>
+<input name="phone" placeholder="Phone" required>
+<input name="email" type="email" placeholder="Email" required>
+<input name="postcode" placeholder="Postcode" required>
+
+<select name="trade" required>
+<option value="">Select Trade</option>
+<option>Joiner</option>
+<option>Plumber</option>
+<option>Electrician</option>
+<option>Decorator</option>
+<option>Roofer</option>
+<option>Landscaper</option>
+</select>
+
+<input name="title" placeholder="Job Title" required>
+
+<textarea name="description" placeholder="Describe the job..." rows="5" required></textarea>
+
+<button class="btn btn-primary">Submit Job</button>
+
+</form>
+</section>
+
+<!-- JOIN AS TRADE -->
+<section id="join" class="form-section">
+<h2 style="text-align:center;">Join as a Trade</h2>
+
+<form action="https://formspree.io/f/YOUR-ID" method="POST">
+
+<input name="name" placeholder="Your Name" required>
+<input name="business" placeholder="Business Name">
+<input name="phone" placeholder="Phone" required>
+<input name="email" type="email" placeholder="Email" required>
+<input name="postcode" placeholder="Postcode" required>
+
+<select name="trade" required>
+<option value="">Your Trade</option>
+<option>Joiner</option>
+<option>Plumber</option>
+<option>Electrician</option>
+<option>Decorator</option>
+<option>Roofer</option>
+<option>Landscaper</option>
+</select>
+
+<textarea name="experience" placeholder="Describe your experience" rows="5"></textarea>
+
+<button class="btn btn-secondary">Register</button>
+
+</form>
 </section>
 
 <section class="map">
 <h2>Local Trades Near You</h2>
 
-<iframe 
-src="https://www.google.com/maps?q=wirral&output=embed">
-</iframe>
-
+<iframe src="https://www.google.com/maps?q=wirral&output=embed"></iframe>
 </section>
 
 <footer>
