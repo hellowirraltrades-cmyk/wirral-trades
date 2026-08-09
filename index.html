@@ -1,15 +1,15 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Wirral Trades — Professional Corporate</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Wirral Trades — Professional Corporate</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -31,32 +31,61 @@
 
 <section class="hero">
   <div class="container">
-    <h1>Find the right local trade for your job</h1>
-    <p>Post your job free and we’ll introduce it to local tradespeople.</p>
-    <a class="button" href="#post-job">Post a job</a>
+    <div class="hero-copy">
+      <span class="eyebrow">Wirral’s local trade network</span>
+      <h1>Find the right local trade for your job</h1>
+      <p>Post your job free and we’ll introduce it to suitable independent tradespeople across the Wirral.</p>
+
+      <div class="hero-actions">
+        <a class="button" href="#post-job">Post a job</a>
+        <a class="button secondary" href="#join">Join as a trade</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="trades" class="section alt">
+  <div class="container">
+    <h2>Choose the trade you need</h2>
+
+    <div class="trade-grid">
+      <article class="trade-card">
+        <img src="assets/trade-1.svg">
+      </article>
+      <article class="trade-card">
+        <img src="assets/trade-2.svg">
+      </article>
+      <article class="trade-card">
+        <img src="assets/trade-3.svg">
+      </article>
+    </div>
+
   </div>
 </section>
 
 <section id="post-job" class="section">
   <div class="container">
-    <h2>Post a Job</h2>
+
+    <h2>Tell us about your job</h2>
 
     <form id="jobForm">
-      <input type="text" name="name" placeholder="Name" required>
-      <input type="email" name="email" placeholder="Email" required>
-      <input type="text" name="postcode" placeholder="Postcode" required>
+
+      <input name="name" placeholder="Name" required>
+      <input name="phone" placeholder="Phone" required>
+      <input name="email" type="email" placeholder="Email" required>
 
       <select id="tradeSelect" required>
-        <option value="">Select trade</option>
-        <option>Plumber</option>
-        <option>Electrician</option>
-        <option>Joiner</option>
+        <option value="">Choose a trade</option>
+        <option>Joiners</option>
+        <option>Plumbers</option>
+        <option>Electricians</option>
       </select>
 
-      <textarea placeholder="Describe the job" required></textarea>
+      <textarea required placeholder="Describe the job"></textarea>
 
-      <button type="submit">Submit Job</button>
+      <button>Submit my job</button>
       <p id="jobMessage"></p>
+
     </form>
 
   </div>
