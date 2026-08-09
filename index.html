@@ -40,61 +40,107 @@
         <a class="button" href="#post-job">Post a job</a>
         <a class="button secondary" href="#join">Join as a trade</a>
       </div>
+
+      <div class="hero-points">
+        <span>✓ Free to post</span>
+        <span>✓ Local matching</span>
+        <span>✓ No obligation</span>
+      </div>
     </div>
   </div>
 </section>
 
 <section id="trades" class="section alt">
   <div class="container">
-    <h2>Choose the trade you need</h2>
+    <div class="heading">
+      <span class="eyebrow">Popular services</span>
+      <h2>Choose the trade you need</h2>
+      <p>Tap a category to start your job enquiry.</p>
+    </div>
 
     <div class="trade-grid">
       <article class="trade-card">
-        <img src="assets/trade-1.svg">
+        <img src="assets/trade-1.svg" alt="Joiners">
+        <button data-trade="Joiners"></button>
       </article>
+
       <article class="trade-card">
-        <img src="assets/trade-2.svg">
+        <img src="assets/trade-2.svg" alt="Plumbers">
+        <button data-trade="Plumbers"></button>
       </article>
+
       <article class="trade-card">
-        <img src="assets/trade-3.svg">
+        <img src="assets/trade-3.svg" alt="Electricians">
+        <button data-trade="Electricians"></button>
+      </article>
+
+      <article class="trade-card">
+        <img src="assets/trade-4.svg" alt="Decorators">
+        <button data-trade="Decorators"></button>
+      </article>
+
+      <article class="trade-card">
+        <img src="assets/trade-5.svg" alt="Roofers">
+        <button data-trade="Roofers"></button>
+      </article>
+
+      <article class="trade-card">
+        <img src="assets/trade-6.svg" alt="Landscapers">
+        <button data-trade="Landscapers"></button>
       </article>
     </div>
+  </div>
+</section>
 
+<section id="how" class="section">
+  <div class="container">
+    <div class="heading">
+      <span class="eyebrow">How it works</span>
+      <h2>Simple from start to finish</h2>
+    </div>
+
+    <div class="steps">
+      <div class="step"><strong>1</strong><h3>Post the job</h3><p>Tell us what needs doing and where.</p></div>
+      <div class="step"><strong>2</strong><h3>We match locally</h3><p>We contact suitable tradespeople.</p></div>
+      <div class="step"><strong>3</strong><h3>Trades respond</h3><p>Interested trades ask to be introduced.</p></div>
+      <div class="step"><strong>4</strong><h3>You choose</h3><p>Compare quotes and decide who suits you.</p></div>
+    </div>
   </div>
 </section>
 
 <section id="post-job" class="section">
   <div class="container">
-
     <h2>Tell us about your job</h2>
 
     <form id="jobForm">
+      <input required name="name" placeholder="Name">
+      <input required name="phone" placeholder="Phone">
+      <input required name="email" type="email" placeholder="Email">
 
-      <input name="name" placeholder="Name" required>
-      <input name="phone" placeholder="Phone" required>
-      <input name="email" type="email" placeholder="Email" required>
-
-      <select id="tradeSelect" required>
+      <select required id="tradeSelect">
         <option value="">Choose a trade</option>
         <option>Joiners</option>
         <option>Plumbers</option>
         <option>Electricians</option>
+        <option>Decorators</option>
+        <option>Roofers</option>
+        <option>Landscapers</option>
       </select>
 
       <textarea required placeholder="Describe the job"></textarea>
 
       <button>Submit my job</button>
       <p id="jobMessage"></p>
-
     </form>
-
   </div>
 </section>
 
 </main>
 
-<footer>
-  <p>© Wirral Trades</p>
+<footer class="footer">
+  <div class="container">
+    <p>© <span id="year"></span> Wirral Trades</p>
+  </div>
 </footer>
 
 <script src="script.js"></script>
