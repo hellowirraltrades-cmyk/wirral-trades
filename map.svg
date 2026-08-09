@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 520">
+<rect width="700" height="520" rx="36" fill="#eef6f8"/>
+<path d="M297 52 C373 65 444 105 482 174 C520 242 495 329 430 377 C368 422 289 439 218 408 C145 377 98 313 106 238 C114 169 160 115 218 82 C244 67 270 57 297 52Z" fill="#d7e7d8" stroke="#173d58" stroke-width="6"/>
+<path d="M547 44 C583 111 599 177 594 250 C589 323 567 389 532 457" fill="none" stroke="#76a8be" stroke-width="30" stroke-linecap="round"/>
+<g font-family="Arial,sans-serif" fill="#173d58" font-weight="700">
+<circle cx="180" cy="210" r="11" fill="#f28b2c"/><text x="200" y="218" font-size="22">West Kirby</text>
+<circle cx="245" cy="155" r="11" fill="#f28b2c"/><text x="265" y="163" font-size="22">Moreton</text>
+<circle cx="352" cy="135" r="11" fill="#f28b2c"/><text x="372" y="143" font-size="22">Wallasey</text>
+<circle cx="388" cy="260" r="11" fill="#f28b2c"/><text x="408" y="268" font-size="22">Birkenhead</text>
+<circle cx="250" cy="330" r="11" fill="#f28b2c"/><text x="270" y="338" font-size="22">Heswall</text>
+</g></svg>

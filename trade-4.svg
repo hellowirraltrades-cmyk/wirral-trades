@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 380">
+<defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#6b416f"/><stop offset="1" stop-color="#ad6dac"/></linearGradient></defs>
+<rect width="600" height="380" rx="30" fill="url(#g)"/>
+<circle cx="480" cy="70" r="130" fill="#fff" opacity=".12"/>
+<circle cx="525" cy="330" r="170" fill="#fff" opacity=".08"/>
+<text x="52" y="185" font-family="Arial,sans-serif" font-size="104" fill="#fff">🖌️</text>
+<text x="52" y="315" font-family="Arial,sans-serif" font-size="42" font-weight="700" fill="#fff">Decorators</text>
+</svg>
