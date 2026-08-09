@@ -29,6 +29,34 @@ header {
     color: white;
     text-align: center;
     padding: 80px 20px;
+    <section id="post-job" style="padding:40px; background:white;">
+<h2 style="text-align:center;">Post a Job</h2>
+
+<form action="https://formspree.io/f/YOUR-ID" method="POST" style="max-width:600px;margin:auto;display:flex;flex-direction:column;gap:10px;">
+
+<input name="name" placeholder="Your Name" required>
+<input name="phone" placeholder="Phone" required>
+<input name="email" type="email" placeholder="Email" required>
+<input name="postcode" placeholder="Postcode" required>
+
+<select name="trade" required>
+<option value="">Select Trade</option>
+<option>Joiner</option>
+<option>Plumber</option>
+<option>Electrician</option>
+<option>Decorator</option>
+<option>Roofer</option>
+<option>Landscaper</option>
+</select>
+
+<input name="title" placeholder="Job Title" required>
+
+<textarea name="description" placeholder="Describe the job..." rows="5" required></textarea>
+
+<button class="btn btn-primary">Submit Job</button>
+
+</form>
+</section>
 }
 
 .hero h1 {
