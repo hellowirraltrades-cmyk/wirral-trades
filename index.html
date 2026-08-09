@@ -1,186 +1,204 @@
-<!doctype html>
+#<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Wirral Trades — Professional Corporate</title>
+  <meta charset="UTF-8">
+  <title>Trade Connect</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+    }
 
-<link rel="stylesheet" href="styles.css">
+    header {
+      background: #111;
+      color: #fff;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: white;
+      margin-left: 15px;
+      text-decoration: none;
+    }
+
+    .button {
+      background: #ff6600;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+
+    .secondary {
+      background: #444;
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .hero {
+      text-align: center;
+    }
+
+    .hero-actions {
+      margin-top: 20px;
+    }
+
+    .hero-actions a {
+      margin: 5px;
+    }
+
+    .trade-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+    }
+
+    .trade-card {
+      background: white;
+      padding: 20px;
+      text-align: center;
+      border-radius: 8px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .step {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    .form-card {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    input, select, textarea {
+      padding: 10px;
+      width: 100%;
+    }
+
+    .full {
+      width: 100%;
+    }
+  </style>
 </head>
-<section id="jobs" style="padding:40px; background:#f7f7f7;">
-  <h2>Post a Job</h2>
-  <p>Tell us what you need and local trades will contact you.</p>
 
-  <form id="jobForm" style="max-width:500px;">
-    
-    <label>Name</label><br>
-    <input type="text" placeholder="Your name" required><br><br>
-
-    <label>Email</label><br>
-    <input type="email" placeholder="Your email" required><br><br>
-
-    <label>Job Description</label><br>
-    <textarea placeholder="Describe the job" required></textarea><br><br>
-
-    <button type="submit">Post Job</button>
-  </form>
-</section>
 <body>
 
-<header class="site-header">
-  <div class="container nav">
-    <a class="brand" href="#"><span class="mark">WT</span>Wirral Trades</a>
-    <button class="menu-toggle">☰</button>
-
-    <nav class="nav-links">
-      <a href="#trades">Trades</a>
-      <a href="#how">How it works</a>
-      <a href="#join">Join as a trade</a>
-      <a class="button" href="#post-job">Post a job</a>
-    </nav>
-  </div>
+<header>
+  <h2>Trade Connect</h2>
+  <nav class="nav-links">
+    <a href="#trades">Trades</a>
+    <a href="#how">How it works</a>
+    <a href="#join">Join as a trade</a>
+    <a class="button" href="#post-job">Post a job</a>
+  </nav>
 </header>
 
-<main>
-
+<!-- HERO -->
 <section class="hero">
-  <div class="container">
-    <div class="hero-copy">
-      <span class="eyebrow">Wirral’s local trade network</span>
-      <h1>Find the right local trade for your job</h1>
-      <p>Post your job free and we’ll introduce it to suitable independent tradespeople across the Wirral.</p>
+  <h1>Find trusted local tradespeople</h1>
+  <p>Post your job and get matched with reliable trades near you</p>
 
-      <div class="hero-actions">
-        <a class="button" href="#post-job">Post a job</a>
-        <a class="button secondary" href="#join">Join as a trade</a>
-      </div>
+  <div class="hero-actions">
+    <a class="button" href="#post-job">Post a job</a>
+    <a class="button secondary" href="#join">Join as a trade</a>
+  </div>
+</section>
 
-      <div class="hero-points">
-        <span>✓ Free to post</span>
-        <span>✓ Local matching</span>
-        <span>✓ No obligation</span>
-      </div>
+<!-- TRADES -->
+<section id="trades">
+  <h2>Popular trades</h2>
+
+  <div class="trade-grid">
+    <div class="trade-card">Joiners</div>
+    <div class="trade-card">Plumbers</div>
+    <div class="trade-card">Electricians</div>
+    <div class="trade-card">Decorators</div>
+    <div class="trade-card">Roofers</div>
+    <div class="trade-card">Landscapers</div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <h2>How it works</h2>
+
+  <div class="steps">
+    <div class="step">
+      <strong>1</strong>
+      <h3>Post the job</h3>
+      <p>Tell us what needs doing and where.</p>
+    </div>
+
+    <div class="step">
+      <strong>2</strong>
+      <h3>We match locally</h3>
+      <p>We contact trades nearby.</p>
+    </div>
+
+    <div class="step">
+      <strong>3</strong>
+      <h3>Trades respond</h3>
+      <p>Trades get in touch with you.</p>
+    </div>
+
+    <div class="step">
+      <strong>4</strong>
+      <h3>You choose</h3>
+      <p>Pick who you want to hire.</p>
     </div>
   </div>
 </section>
 
-<section id="trades" class="section alt">
-  <div class="container">
-    <div class="heading">
-      <span class="eyebrow">Popular services</span>
-      <h2>Choose the trade you need</h2>
-      <p>Tap a category to start your job enquiry.</p>
-    </div>
+<!-- POST JOB FORM (THIS WAS YOUR ISSUE BEFORE) -->
+<section id="post-job">
+  <h2>Post a job</h2>
 
-    <div class="trade-grid">
-      <article class="trade-card">
-        <img src="trade-1.svg">
-        <button data-trade="Joiners"></button>
-      </article>
+  <form class="form-card">
+    <input placeholder="Name" required>
+    <input placeholder="Phone" required>
+    <input placeholder="Email" required>
+    <input placeholder="Postcode" required>
 
-      <article class="trade-card">
-        <img src="trade-2.svg">
-        <button data-trade="Plumbers"></button>
-      </article>
+    <select required>
+      <option value="">Choose a trade</option>
+      <option>Joiners</option>
+      <option>Plumbers</option>
+      <option>Electricians</option>
+    </select>
 
-      <article class="trade-card">
-       <img src="trade-3.svg">
-        <button data-trade="Electricians"></button>
-      </article>
+    <textarea placeholder="Describe your job"></textarea>
 
-      <article class="trade-card">
-       <img src="trade-4.svg">
-        <button data-trade="Decorators"></button>
-      </article>
-
-      <article class="trade-card">
-<img src="trade-5.svg">
-        <button data-trade="Roofers"></button>
-      </article>
-
-      <article class="trade-card">
-       <img src="trade-6.svg">
-        <button data-trade="Landscapers"></button>
-      </article>
-    </div>
-  </div>
+    <button class="button full">Submit</button>
+  </form>
 </section>
 
-<section id="how" class="section">
-  <div class="container">
-    <div class="heading">
-      <span class="eyebrow">How it works</span>
-      <h2>Simple from start to finish</h2>
-    </div>
-
-    <div class="steps">
-      <div class="step">
-        <strong>1</strong>
-        <h3>Post the job</h3>
-        <p>Tell us what needs doing and where.</p>
-      </div>
-
-      <div class="step">
-        <strong>2</strong>
-        <h3>We match locally</h3>
-        <p>We contact suitable tradespeople.</p>
-      </div>
-
-      <div class="step">
-        <strong>3</strong>
-        <h3>Trades respond</h3>
-        <p>Interested trades ask to be introduced.</p>
-      </div>
-
-      <div class="step">
-        <strong>4</strong>
-        <h3>You choose</h3>
-        <p>Compare quotes and decide who suits you.</p>
-      </div>
-    </div>
-  </div>
+<!-- JOIN -->
+<section id="join">
+  <h2>Join as a trade</h2>
+  <p>Get more work by joining our network of trusted tradespeople.</p>
+  <a class="button">Apply now</a>
 </section>
-
-<section id="post-job" class="section">
-  <div class="container split">
-    <div>
-      <span class="eyebrow">For customers</span>
-      <h2>Tell us about your job</h2>
-    </div>
-
-    <form class="form-card">
-      <input placeholder="Name" required>
-      <input placeholder="Phone" required>
-      <input placeholder="Email" required>
-      <input placeholder="Postcode" required>
-
-      <select required>
-        <option value="">Choose a trade</option>
-        <option>Joiners</option>
-        <option>Plumbers</option>
-        <option>Electricians</option>
-      </select>
-
-      <textarea placeholder="Describe your job"></textarea>
-
-      <button class="button full">Submit</button>
-    </form>
-  </div>
-</section>
-
-</main>
-
-<footer class="footer">
-  <div class="container">
-    <p>© Wirral Trades</p>
-  </div>
-</footer>
-
-<script src="script.js"></script>
 
 </body>
 </html>
